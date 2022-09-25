@@ -3,11 +3,18 @@
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
 
+import 'core-js/stable'
+import 'regenerator-runtime/runtime'
 import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
+import WebpackerReact from 'webpacker-react'
+
+import RehabVideos from 'components/RehabVideos/index'
 
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+WebpackerReact.setup({RehabVideos})
