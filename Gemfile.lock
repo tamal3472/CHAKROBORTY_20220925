@@ -195,6 +195,8 @@ GEM
       rack-proxy (>= 0.6.1)
       railties (>= 5.2)
       semantic_range (>= 2.3.0)
+    webpacker-react (1.0.0.beta.1)
+      webpacker
     websocket (1.2.9)
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
@@ -215,7 +217,7 @@ DEPENDENCIES
   pg
   puma (~> 5.0)
   rack-mini-profiler (~> 2.0)
-  rails (~> 6.0.x)
+  rails (~> 6.1.x)
   sass-rails (>= 6)
   selenium-webdriver (>= 4.0.0.rc1)
   spring
@@ -224,6 +226,7 @@ DEPENDENCIES
   web-console (>= 4.1.0)
   webdrivers
   webpacker (~> 5.0)
+  webpacker-react
 
 RUBY VERSION
    ruby 2.7.5p203
