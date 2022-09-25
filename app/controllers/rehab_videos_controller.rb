@@ -1,6 +1,6 @@
 class RehabVideosController < ApplicationController
     def index
-      @rehab_videos = RehabVideo.all
+      @rehab_videos = RehabVideo.all.group_by(&:category)
     end
 
     def create
