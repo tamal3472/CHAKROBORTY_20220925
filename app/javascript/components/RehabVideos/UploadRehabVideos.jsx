@@ -14,7 +14,7 @@ const UploadRehabVideos = () => {
         'http://localhost:3000/rehab_videos', formData
       );
       if (data.error === null) {
-        window.location.reload();
+        window.location.replace('http://localhost:3000/rehab_videos');
       }
     } catch (exception) {
       const { response } = exception;
@@ -28,7 +28,7 @@ const UploadRehabVideos = () => {
     event.preventDefault();
     setError({});
     const formData = new FormData();
-    if (file) {
+    if (video) {
       formData.append('rehab_video[video]', video);
     }
     formData.append('rehab_video[title]', title);
@@ -39,42 +39,42 @@ const UploadRehabVideos = () => {
 
   return (
     <Fragment>
-      <div className="form-page category-page">
-        <h1 className="title">Upload a movie</h1>
+      <div className="form-page content-page">
+        <h1 className="form-page__title">Upload a video</h1>
         <form onSubmit={submitHandler}>
-          <div className="form-group">
-            <label className="label">Title</label>
+          <div className="form-page__form-group">
+            <label className="form-page__form-group-label">Title</label>
             <input
               className="input"
               type="text"
               value={title}
               onChange={evt => setTitle(evt.target.value)}
             />
-             <div className="error">{error.title}</div>
+             <div className="form-page__form-group-error">{error.title}</div>
           </div>
 
-          <div className="form-group">
-            <label className="label">Movie</label>
+          <div className="form-page__form-group">
+            <label className="form-page__form-group-label">Movie</label>
             <input
               type="file"
               id="file"
               onChange={event => setVideo(event.target.files[0])}
             />
-            <div className="error">{error.video}</div>
+            <div className="form-page__form-group-error">{error.video}</div>
           </div>
 
-          <div className="form-group">
-            <label className="label" htmlFor="videos">Category</label>
-            <select className="select" id="videos" value={category} onChange={evt => setCategory(evt.target.value)}>
+          <div className="form-page__form-group">
+            <label className="form-page__form-group-label" htmlFor="videos">Category</label>
+            <select className="form-page__form-group-select" id="videos" value={category} onChange={evt => setCategory(evt.target.value)}>
               <option selected hidden>Choose here</option>
               <option value="education">Education</option>
               <option value="exercise">Exercise</option>
               <option value="recipe">Recipe</option>
             </select>
-            <div className="error">{error.category}</div>
+            <div className="form-page__form-group-error">{error.category}</div>
           </div>
 
-          <button className="button" type="submit">Submit</button>
+          <button className="form-page__button" type="submit">Submit</button>
         </form>
       </div>
     </Fragment>

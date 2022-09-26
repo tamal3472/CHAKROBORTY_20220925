@@ -15,14 +15,14 @@ const RehabVideos = () => {
   }
 
   const renderVideoList = video => (
-    <div className="movie-card" key={video.id}>
-      <div className="movie-card-header">
-          <h2 className="top-movie-title">{video.title}</h2>
-          <video className="movie" controls poster={video.thumbnail_url} >
+    <div className="category__movie-list-movie-card" key={video.id}>
+      <div className="category__movie-list-movie-card-movie-card-header">
+          <h2 className="category__movie-list-movie-card-movie-card-header-top-movie-title">{video.title}</h2>
+          <video className="category__movie-list-movie-card-movie" controls poster={video.thumbnail_url} >
             <source src={video.video_url} type="video/mp4"></source>
           </video>
       </div>
-      <h2 className="movie-title">{video.title}</h2>
+      <h2 className="category__movie-list-movie-card-movie-title">{video.title}</h2>
     </div>
   )
 
@@ -32,34 +32,34 @@ const RehabVideos = () => {
 
   return (
     <Fragment>
-      <button className="upload-page-button" onClick={()=> window.location.replace(newVideoUrl)} >Upload Video</button>
-      <div className="category-page">
-          <div className="category">
-            <h1 className="category-title">Education</h1>
-            <div className="movie-list">
-              {
-                list.education && list.education.map(video => renderVideoList(video))
-              }
-            </div>
+      <div className="content-page">
+        <button className="content-page__redirect-button" onClick={()=> window.location.replace(newVideoUrl)}> Upload Video </button>
+        <div className="category">
+          <h1 className="category__category-title">Education</h1>
+          <div className="category__movie-list">
+            {
+              list.education && list.education.map(video => renderVideoList(video))
+            }
           </div>
+        </div>
 
-          <div className="category">
-            <h1 className="category-title">Exercise</h1>
-            <div className="movie-list">
-              {
-                list.exercise && list.exercise.map(video => renderVideoList(video))
-              }
-            </div>
+        <div className="category">
+          <h1 className="category__category-title">Exercise</h1>
+          <div className="category__movie-list">
+            {
+              list.exercise && list.exercise.map(video => renderVideoList(video))
+            }
           </div>
+        </div>
 
-          <div className="category">
-            <h1 className="category-title">Recipe</h1>
-            <div className="movie-list">
-              {
-                list.recipe && list.recipe.map(video => renderVideoList(video))
-              }
-            </div>
+        <div className="category">
+          <h1 className="category__category-title">Recipe</h1>
+          <div className="category__movie-list">
+            {
+              list.recipe && list.recipe.map(video => renderVideoList(video))
+            }
           </div>
+        </div>
       </div>
     </Fragment>
   )
