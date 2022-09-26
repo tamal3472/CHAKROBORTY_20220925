@@ -8,7 +8,7 @@ class RehabVideo < ApplicationRecord
   validates_presence_of :category, :title
   validate :video_validation
 
-  after_save :save_thumbnails
+  after_commit :save_thumbnails
 
   def video_validation
     if video.attached?
@@ -27,6 +27,7 @@ class RehabVideo < ApplicationRecord
   def save_thumbnails
     return unless video.attached? and video.previewable?
 
+    # we should do it in a background job but for this POC I excluded that complexity
     SaveThumbnails.call(rehab_video_id: id)
   end
 end
