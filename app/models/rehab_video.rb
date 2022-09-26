@@ -2,7 +2,7 @@ class RehabVideo < ApplicationRecord
   has_one_attached :video
   has_one_attached :small_thumbnail
   has_one_attached :large_thumbnail
-  has_one_attached :medium_size_thumbnail
+  has_one_attached :medium_thumbnail
   enum category: { exercise: 0, education: 1, recipe: 3 }
 
   validates_presence_of :category, :title
@@ -26,7 +26,7 @@ class RehabVideo < ApplicationRecord
 
   def save_thumbnails
     return unless video.attached? and video.previewable?
-    byebug
+
     ThumbnailGenerationJob.perform_later(id)
   end
 end
