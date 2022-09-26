@@ -7,17 +7,18 @@ default: &default
 
 development:
   <<: *default
-  database: rehab_management_development
-  # host: postgres
-  # username: postgres
-  # password: password
-
+  database: rehab_management_tamal
+  host: db
+  username: postgres
+  password: password
 
 
 test:
   <<: *default
   database: rehab_management_test
-
+  host: db
+  username: postgres
+  password: password
 
 #
 production:

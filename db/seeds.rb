@@ -1,10 +1,14 @@
 def save_attachment(rehab_video, title)
-  video_file = File.open("#{Rails.root}/fixtures/sample_video.mp4")
-  rehab_video.video.attach(
-    io: video_file, filename: "#{title}.mp4", content_type: 'video/mp4',
-  )
-ensure
-  video_file.close
+  # we are opening separate file for each video to avoid file read issue for active storage
+  begin
+    video_file = File.open("#{Rails.root}/fixtures/sample_video.mp4")
+    rehab_video.video.attach(
+      io: video_file, filename: "#{title}.mp4", content_type: 'video/mp4',
+    )
+  ensure
+    # opened file gets closed
+    video_file.close
+  end
 end
 
 # Education videos

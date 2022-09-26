@@ -15,15 +15,19 @@ class SaveThumbnails
 
   def call
     rehab_video_content = rehab_video.video
-    RehabVideo.skip_callback(:save, :after, :save_thumbnails)
+
+    # We are skipping this callback to not to trigger this again and again for each thumbnail saving
+    RehabVideo.skip_callback(:commit, :after, :save_thumbnails)
     save_small_thumbnail(rehab_video_content)
     save_medium_thumbnail(rehab_video_content)
     save_large_thumbnail(rehab_video_content)
-    RehabVideo.set_callback(:save, :after, :save_thumbnails)
+    RehabVideo.set_callback(:commit, :after, :save_thumbnails)
+
   end
 
   private
 
+  # saving happens here
   def save_small_thumbnail(video)
     file = small_size_thumbnail_file(video)
     begin
@@ -33,6 +37,7 @@ class SaveThumbnails
         content_type: 'image/jpg',
       )
     ensure
+      #temp file are closed and deleted
       file.close
       File.delete(file.path)
     end
@@ -66,6 +71,7 @@ class SaveThumbnails
     end
   end
 
+  # thumb file gets created here
   def small_size_thumbnail_file(video)
     thumb = processed_video(video, SMALL_SIZE)
     File.open(write_in_temp_file(thumb), 'r')
@@ -81,11 +87,13 @@ class SaveThumbnails
     File.open(write_in_temp_file(thumb), 'r')
   end
 
+  # Generating preview to save as thumb
   def processed_video(video, size)
     video.preview(resize: size)
   end
 
   def write_in_temp_file(thumb)
+    # saving the generated thumb inside a temp file
     opened_tempfile = File.open(temp_file_path, 'wb')
     opened_tempfile.binmode
     opened_tempfile.write(thumb)
