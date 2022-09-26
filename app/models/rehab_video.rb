@@ -27,6 +27,6 @@ class RehabVideo < ApplicationRecord
   def save_thumbnails
     return unless video.attached? and video.previewable?
 
-    ThumbnailGenerationJob.perform_later(id)
+    SaveThumbnails.call(rehab_video_id: id)
   end
 end

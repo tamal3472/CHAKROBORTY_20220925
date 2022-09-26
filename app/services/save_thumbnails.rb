@@ -1,12 +1,16 @@
 class SaveThumbnails
-  attr_reader :rehab_video
+  LARGE_SIZE = '256x256'.freeze
+  MEDIUM_SIZE = '128x128'.freeze
+  SMALL_SIZE = '64x64'.freeze
+  attr_reader :rehab_video, :rehab_video_id
 
-  def self.call(rehab_video:)
-    new(rehab_video: rehab_video).call
+  def self.call(rehab_video_id:)
+    new(rehab_video_id: rehab_video_id).call
   end
 
-  def initialize(rehab_video:)
-    @rehab_video = rehab_video
+  def initialize(rehab_video_id:)
+    @rehab_video_id = rehab_video_id
+    @rehab_video = RehabVideo.find(rehab_video_id)
   end
 
   def call
@@ -63,26 +67,22 @@ class SaveThumbnails
   end
 
   def small_size_thumbnail_file(video)
-    thumb = processed_video(video, '64x64')
+    thumb = processed_video(video, SMALL_SIZE)
     File.open(write_in_temp_file(thumb), 'r')
   end
 
   def medium_size_thumbnail_file(video)
-    thumb = processed_video(video, '128x128')
+    thumb = processed_video(video, MEDIUM_SIZE)
     File.open(write_in_temp_file(thumb), 'r')
   end
 
   def large_size_thumbnail_file(video)
-    thumb = processed_video(video, '256x256')
+    thumb = processed_video(video, LARGE_SIZE)
     File.open(write_in_temp_file(thumb), 'r')
   end
 
   def processed_video(video, size)
     video.preview(resize: size)
-  end
-
-  def rehab_video_id
-    @rehab_video_id ||= rehab_video.id
   end
 
   def write_in_temp_file(thumb)
