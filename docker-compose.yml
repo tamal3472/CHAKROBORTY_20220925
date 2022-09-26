@@ -1,0 +1,37 @@
+version: '3.9'
+
+x-default: &default
+  build: .
+  volumes:
+    - .:/var/CHAKROBORTY20220925
+  ports:
+    - 5433:5432
+  environment:
+    POSTGRES_USER: postgres
+    POSTGRES_PASSWORD: password
+
+services:
+  db:
+    image: postgres:13.5
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: password
+
+  web:
+    <<: *default
+    command: >
+      sh -c "
+        rm -rf tmp/pids/server.pid \
+        & ./bin/webpack-dev-server \
+        & bundle exec rails s -b '0.0.0.0'"
+    ports:
+      - 3000:3000
+      - 3035:3035
+    depends_on:
+      - db
+    tty: true
+    stdin_open: true
+
+volumes:
+  postgres_data:
