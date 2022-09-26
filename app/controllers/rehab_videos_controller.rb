@@ -3,6 +3,8 @@ class RehabVideosController < ApplicationController
       @rehab_videos = RehabVideo.all.group_by(&:category)
     end
 
+    def new; end
+
     def create
        rehab_video = RehabVideo.new(rehab_video_params)
       if rehab_video.save
