@@ -1,3 +1,4 @@
+json.id video.id
 json.title video.title
 json.category video.category
 video_content = video.video

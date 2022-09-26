@@ -1,0 +1,125 @@
+.content-page {
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+
+    &__redirect-button {
+        background: grey;
+        border: none;
+        border-radius: px;
+        color: #fff;
+        cursor: pointer;
+        margin-top: 20px;
+        padding: 8px 16px;
+    }
+}
+
+
+.category {
+    &__movie-list {
+        display: grid;
+        gap: 12px;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+
+        &-movie-card {
+            border: 1px solid #eee;
+            border-radius: 4px;
+
+            &-movie-card-header {
+                position: relative;
+
+                &-top-movie-title {
+                    color: #eee;
+                    display: none;
+                    font-size: 18px;
+                    font-weight: normal;
+                    left: 12px;
+                    position: absolute;
+                    top: 0;
+                    transition: all .4s;
+                }
+
+                &:hover {
+                    .top-movie-title {
+                        display: block;
+                    }
+                }
+            }
+
+            &-movie {
+                width: 100%;
+            }
+
+            &-movie-title {
+                font-size: 20px;
+                margin-left: 8px;
+            }
+        }
+    }
+}
+
+.form-page {
+    margin-bottom: 80px;
+    margin-top: 40px;
+    width: 30%;
+
+    &__title {
+        font-size: 40px;
+        font-weight: normal;
+        margin-bottom: 40px;
+    }
+
+    &__form-group {
+        margin-bottom: 12px;
+
+        &-error {
+            color: red;
+        }
+
+        &-label {
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .input {
+            appearance: none;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: 0.25rem;
+            color: #212529;
+            display: block;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            padding: 0.375rem 0.75rem;
+            transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+            width: 95%;
+        }
+
+        &-select {
+            border: 1px solid #ced4da;
+            padding: 0.375rem 0.75rem;
+            outline:0;
+            box-shadow:none;
+            background-image: none;
+            flex: 1;
+            padding: 8px;
+            cursor: pointer;
+            width: 100%;
+            border-radius: 0.25rem;
+            transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+        }
+
+    }
+
+    &__button {
+        background: blue;
+        border: none;
+        border-radius: 4px;
+        color: #fff;
+        cursor: pointer;
+        margin-top: 20px;
+        padding: 8px 16px;
+    }
+}
