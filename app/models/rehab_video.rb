@@ -25,7 +25,7 @@ class RehabVideo < ApplicationRecord
   private
 
   def save_thumbnails
-    return unless video.attached? and video.previewable?
+    return unless video.attached? && video.previewable?
 
     # we should do it in a background job but for this POC I excluded that complexity
     SaveThumbnails.call(rehab_video_id: id)
