@@ -17,7 +17,7 @@ const RehabVideos = () => {
   const renderVideoList = video => (
     <div className="category__movie-list-movie-card" key={video.id}>
       <div className="category__movie-list-movie-card-movie-card-header">
-          <h2 className="category__movie-list-movie-card-movie-card-header-top-movie-title">{video.title}</h2>
+          <h2 className="category__movie-list-movie-card-movie-card-header-top-movie-title display-title">{video.title}</h2>
           <video className="category__movie-list-movie-card-movie" controls poster={video.thumbnail_url} >
             <source src={video.video_url} type="video/mp4"></source>
           </video>
